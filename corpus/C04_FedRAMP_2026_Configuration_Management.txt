@@ -1,0 +1,17 @@
+SOURCE_ID: C04
+TITLE: FedRAMP Consolidated Rules for 2026 — Rev5 Configuration Management
+ISSUER: FedRAMP
+AUTHORITY: Authoritative FedRAMP program rules
+CANONICAL_URL: https://www.fedramp.gov/2026/providers/rev5/controls/configuration-management/
+RETRIEVED: 2026-08-24
+CATEGORY: configuration_management
+
+CURATED INGESTION EXTRACT
+
+FedRAMP’s 2026 Rev5 Configuration Management rules apply FedRAMP program guidance to the NIST SP 800-53 Configuration Management control family. The page identifies the NIST control IDs and catalog version used by FedRAMP and supplies FedRAMP-specific guidance where applicable.
+
+For configuration-management policy and procedures, organization-defined frequencies and events remain organization-defined rather than universal values.
+
+FedRAMP guidance on configuration management explicitly directs providers to follow the current Significant Change Notification (SCN) rules when a change may be significant. This means ordinary internal change approval does not by itself settle whether a FedRAMP-specific notification, assessment, verification, or authorization action is required.
+
+For questions about baseline configuration, configuration change control, impact analysis, access restrictions, configuration settings, inventories, or other CM controls, use the applicable NIST control together with current FedRAMP guidance. For significant-change classification, notification timing, required information, emergency treatment, and category-specific pathways, use the FedRAMP Significant Change Notification rules.
