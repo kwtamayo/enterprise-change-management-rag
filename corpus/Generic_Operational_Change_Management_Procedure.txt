@@ -1,0 +1,118 @@
+GENERIC OPERATIONAL PROCEDURE
+Change Management for Federally Regulated Cloud Environments
+Project-created operational guidance for the Federal Cloud Change Management Knowledge Assistant
+
+STATUS AND AUTHORITY. This document is a fictional, generic procedure created for an educational RAG project. It is not issued by NIST, FedRAMP, any federal agency, Salesforce, or another employer. It does not certify compliance, grant authorization, or replace organization-specific policy, contracts, authorization boundaries, or authorized officials.
+
+1. Purpose and scope
+This procedure defines a repeatable operational process for proposing, evaluating, approving, implementing, validating, and closing changes to cloud systems that may support federal customers or operate within a federally regulated authorization boundary.
+It applies to planned, standard, and emergency changes to production systems and to non-production changes that could affect shared services, security controls, regulated data, authorization evidence, or the production environment.
+This procedure does not determine whether a system is FedRAMP authorized, whether a change is legally permissible, or whether an authorization remains valid. Those decisions belong to the applicable organization, agency, authorizing official, and FedRAMP process.
+
+2. Source and authority hierarchy
+When guidance conflicts or differs in specificity, users shall apply the highest applicable authority and obtain clarification from the responsible governance or security function.
+Applicable law, regulation, contract, agency direction, and authorization requirements.
+Current FedRAMP rules and organization-specific FedRAMP obligations.
+Applicable NIST controls and risk-management guidance as selected, tailored, and implemented by the organization.
+The organization's approved policies, procedures, authorization package, and control implementations.
+This generic procedure, used only where it does not conflict with a higher authority.
+Interpretation rule. NIST controls often contain organization-defined parameters. This procedure does not silently fill those parameters or convert recommendations into universal federal mandates.
+
+3. Roles and segregation of duties
+No person may approve a change solely because they requested or implemented it when independent approval is required. Emergency access or self-approval is permitted only when an organization-specific policy explicitly authorizes it and requires subsequent independent review.
+
+4. Change categories and risk
+4.1 Process categories
+A standard change becomes normal if its scope, implementation method, risk, timing, affected boundary, or evidence differs from the approved standard model.
+
+4.2 Risk classification
+Risk is based on impact and likelihood, including uncertainty. Urgency does not reduce risk. Each organization must define its own thresholds, scoring method, and approval authority.
+
+5. Required change record
+Every change record shall contain enough information for a qualified reviewer to understand what will change, why it is needed, how risk will be managed, and how success or failure will be determined.
+Purpose, business or security justification, and requested outcome.
+Affected systems, components, services, environments, customers, data, dependencies, and authorization boundary.
+Current state and proposed state, including relevant configuration values or baseline references.
+Change category, proposed risk level, assumptions, and known uncertainties.
+Security and privacy impact analysis, including affected controls and evidence when applicable.
+FedRAMP Significant Change Notification screening result when the authorized service may be affected.
+Testing performed, results, limitations, and unresolved defects.
+Ordered implementation plan, named owner, access required, timing, and estimated duration.
+Rollback trigger, prior known-good state, restoration steps, owner, recovery estimate, and validation.
+Monitoring, success criteria, failure criteria, communications, approvals, and required post-implementation review.
+Evidence quality. A checked box without supporting evidence is insufficient when the procedure or risk requires test results, impact analysis, approval, logs, or validation output.
+
+6. Impact and compliance assessment
+6.1 Security and privacy impact
+Before implementation, the requester and technical owner shall analyze the potential effect on security and privacy requirements, controls, architecture, interfaces, identities, logging, encryption, data location, suppliers, inherited controls, and operational resilience. The analysis shall identify new risk, affected evidence, and any additional review or mitigation.
+
+6.2 FedRAMP significant-change screening
+When a change may affect a FedRAMP-authorized cloud service, its boundary, control implementation, certification class, or authorization evidence, the responsible FedRAMP or security function shall evaluate it against the current FedRAMP Significant Change Notification rules. The change record shall capture the screening outcome and responsible decision-maker.
+The requester, chatbot, or generic procedure may flag indicators but may not make the final FedRAMP classification unless the organization has expressly delegated that authority.
+
+7. Testing, implementation, and rollback
+7.1 Testing
+Test in an environment and manner proportionate to the risk and technically representative where practical.
+Cover intended functionality, security effects, dependencies, failure conditions, and rollback where feasible.
+Record test method, data, result, date, tester, defects, limitations, and residual risk.
+For constrained emergency testing, document the constraint and compensating monitoring or validation.
+
+7.2 Implementation and monitoring
+Confirm the approved record, scope, personnel, access, timing, dependencies, communications, and rollback readiness.
+Execute the approved steps. Stop and reassess if the actual conditions materially differ from the approved plan.
+Record timestamps, actions, deviations, errors, monitoring results, and the person performing the work.
+Validate success criteria and security-relevant behavior before declaring implementation successful.
+
+7.3 Rollback
+Initiate rollback when an approved trigger occurs, success criteria cannot be met, material unexpected impact appears, or the authorized decision-maker directs it. Restore the known-good state, validate service and security behavior, communicate status, and retain evidence. If rollback is unsafe or impossible, escalate according to the incident, continuity, or emergency process.
+
+8. Review and approval
+Approval is an evidence-based risk decision. The change authority shall confirm that scope, impact, testing, implementation, rollback, monitoring, authorization screening, and residual risk are sufficiently addressed for the proposed risk level.
+Low-risk changes may use streamlined organization-defined approval.
+Moderate-risk changes require an authorized reviewer independent of the requester or implementer when policy requires.
+High-risk changes require the organization-defined senior change authority and security, privacy, service-owner, or authorization review triggered by the impact.
+Conditional approvals shall state the condition, owner, deadline, and consequence if unmet.
+The approver may approve, reject, defer, or request more evidence. Approval applies only to the documented scope and window. A material change to the plan requires reassessment and reapproval.
+
+9. Emergency changes
+Emergency treatment shortens the decision path; it does not erase accountability. The requester shall document the threat or service impact, urgency, affected scope, available impact analysis, implementation, rollback, monitoring, and testing completed or deferred.
+Obtain approval from the organization-defined emergency authority before implementation when feasible.
+If prior approval is impossible under an expressly authorized exception, document who acted, why delay was unacceptable, and the authority relied upon.
+Notify required stakeholders and preserve evidence during implementation.
+Complete independent retrospective review within the organization-defined timeframe.
+Resolve deferred testing, documentation, risk acceptance, baseline updates, and follow-up actions.
+Emergency boundary. Convenience, missed planning, or an approaching deadline alone does not justify emergency classification.
+
+10. Validation, closure, and post-implementation review
+A change may close only after the actual outcome is recorded and required evidence is attached. Closure shall identify whether the change succeeded, failed, rolled back, or produced an accepted deviation.
+Confirm functional, security, privacy, logging, monitoring, and customer-impact results as applicable.
+Update configuration baselines, inventories, diagrams, procedures, control narratives, and authorization evidence affected by the change.
+Record incidents, unexpected outcomes, deviations, residual risk, and assigned corrective actions.
+Perform a post-implementation review for high-risk, emergency, failed, rolled-back, or policy-triggered changes.
+Feed lessons into standard-change models, testing, automation, monitoring, and this procedure.
+
+11. Exceptions and unsupported decisions
+Exceptions to this procedure require documented justification, risk, duration, compensating controls, owner, approval, and expiration. This generic procedure does not identify actual company approvers, determine whether a live change is approved, access an ITSM record, grant a FedRAMP determination, or accept risk on behalf of an organization.
+
+Appendix A. Approval-readiness checklist
+Scope and affected boundary are clear.
+Current and proposed states are documented.
+Risk, security, privacy, and dependency impacts are analyzed.
+FedRAMP screening is completed when triggered.
+Testing evidence is proportionate to risk and limitations are explicit.
+Implementation, monitoring, success, failure, and rollback criteria are executable.
+Required reviewers and approvers are identified under organization policy.
+Residual risk, communications, evidence retention, and closure requirements are assigned.
+
+Appendix B. Source references
+NIST SP 800-53 Rev. 5: https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final
+NIST SP 800-128: https://csrc.nist.gov/pubs/sp/800/128/upd1/final
+NIST SP 800-37 Rev. 2: https://csrc.nist.gov/pubs/sp/800/37/r2/final
+FedRAMP Configuration Management: https://www.fedramp.gov/2026/providers/rev5/controls/configuration-management/
+FedRAMP Significant Change Notification: https://www.fedramp.gov/2026/reference/significant-change-notification/
+
+Version: 0.1 - evaluation baseline
+Effective date: August 23, 2026
+Owner: Project corpus owner
+Review cycle: Every 30 days during the project and before each evaluation run
+Applicability: Generic cloud changes that may affect federally regulated environments
