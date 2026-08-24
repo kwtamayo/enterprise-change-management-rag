@@ -1,0 +1,129 @@
+{
+  "name": "Enterprise Policy KB Ingestion",
+  "nodes": [
+    {
+      "parameters": {
+        "mode": "insert",
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "=enterprise-policies",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "id": "41d7ef28-0497-4c08-b50b-7e6b62853ff4",
+      "name": "Pinecone Insert",
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1,
+      "position": [880, 0],
+      "credentials": {
+        "pineconeApi": {
+          "id": "T82F7ZwbzDh1AOc1",
+          "name": "Pinecone account"
+        }
+      },
+      "notes": "No namespace set — all docs go into default.\nIndex: enterprise-policies, dimension=1536 (text-embedding-3-small).\nSelect your Pinecone credential in this node."
+    },
+    {
+      "parameters": {
+        "dataType": "binary",
+        "options": {
+          "metadata": {
+            "metadataValues": [
+              {
+                "name": "label",
+                "value": "={{ $binary.data.fileName }}"
+              }
+            ]
+          }
+        }
+      },
+      "id": "3dbf1891-7998-46c8-8363-de5be9711b32",
+      "name": "Data Loader",
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1,
+      "position": [976, 224]
+    },
+    {
+      "parameters": {
+        "chunkSize": 800,
+        "chunkOverlap": 150,
+        "options": {}
+      },
+      "id": "c13ca3c4-1a0e-46cd-9f65-0d5d1980293d",
+      "name": "Text Splitter",
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [976, 352]
+    },
+    {
+      "parameters": {
+        "formTitle": "Enterprise Policy KB Ingestion",
+        "formDescription": "Upload policy text files to ingest them into the knowledge base.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Policy Files",
+              "fieldType": "file",
+              "acceptFileTypes": ".txt,.docx",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.5,
+      "position": [0, 0],
+      "id": "054563ce-40ed-4f6f-a6df-d843559abeb4",
+      "name": "On form submission",
+      "webhookId": "41ecd0c3-139a-448d-913b-48cd6f795607"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Form puts all uploaded files on one item as separate binary properties.\n// Split into one item per file, with binary key 'data' and the filename in json.\nconst out = [];\nfor (const item of $input.all()) {\n  for (const bin of Object.values(item.binary ?? {})) {\n    out.push({ json: { fileName: bin.fileName }, binary: { data: bin } });\n  }\n}\nreturn out;"
+      },
+      "id": "476c8822-47c0-46fb-966f-460f300afdad",
+      "name": "Split Uploaded Files",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [224, 0]
+    },
+    {
+      "parameters": {"options": {}},
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [832, 208],
+      "id": "5bc618d1-62d1-4bd6-b41e-5f0307d45942",
+      "name": "Embeddings OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "hze7QDkLlQwrhvw4",
+          "name": "OpenAI account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Data Loader": {"ai_document": [[{"node": "Pinecone Insert", "type": "ai_document", "index": 0}]]},
+    "Text Splitter": {"ai_textSplitter": [[{"node": "Data Loader", "type": "ai_textSplitter", "index": 0}]]},
+    "On form submission": {"main": [[{"node": "Split Uploaded Files", "type": "main", "index": 0}]]},
+    "Split Uploaded Files": {"main": [[{"node": "Pinecone Insert", "type": "main", "index": 0}]]},
+    "Embeddings OpenAI": {"ai_embedding": [[{"node": "Pinecone Insert", "type": "ai_embedding", "index": 0}]]}
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "5d02cc0c-2e70-4754-8265-4b91d5b34e41",
+  "meta": {"instanceId": "9342eae422336745a3d63556b368ee22aec7ae4c55e7253c5c0d864528879dc9"},
+  "nodeGroups": [],
+  "id": "NYrVxmTEsDqo7ohy",
+  "tags": [
+    {"updatedAt": "2026-08-24T20:08:05.753Z", "createdAt": "2026-08-24T20:08:05.753Z", "id": "IYGjbh7gpjZzhUuP", "name": "RAG"},
+    {"updatedAt": "2026-08-24T20:08:05.760Z", "createdAt": "2026-08-24T20:08:05.760Z", "id": "jfhJfTcipiO11poR", "name": "Project-2A"}
+  ]
+}
