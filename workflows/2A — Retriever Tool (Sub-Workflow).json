@@ -1,0 +1,104 @@
+{
+  "name": "2A — Retriever Tool (Sub-Workflow)",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "648044d8-129e-4c24-a1ca-b5fdaa9d3cf3",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [0, 0]
+    },
+    {
+      "parameters": {
+        "jsCode": "const query = $input.first().json.query || $input.first().json.chatInput || $input.first().json.input || '';\nreturn [{ json: { query } }];"
+      },
+      "id": "70436d43-9c8f-4a67-a03d-ea5bd1475a4a",
+      "name": "Extract Query",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [224, 0],
+      "notes": "Extracts the search query from whatever field the agent passes in."
+    },
+    {
+      "parameters": {
+        "mode": "load",
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "enterprise-policies",
+          "mode": "list",
+          "cachedResultName": "enterprise-policies"
+        },
+        "prompt": "={{ $json.query }}",
+        "topK": 12,
+        "options": {}
+      },
+      "id": "9256cf0a-bfdd-4c9a-8f47-1eda059756e5",
+      "name": "Pinecone Vector Store",
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1,
+      "position": [400, 0],
+      "credentials": {
+        "pineconeApi": {
+          "id": "T82F7ZwbzDh1AOc1",
+          "name": "Pinecone account"
+        }
+      }
+    },
+    {
+      "parameters": {"options": {}},
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [400, 208],
+      "id": "099eb05e-8e03-4791-82e3-b8b55b53263d",
+      "name": "Embeddings OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "hze7QDkLlQwrhvw4",
+          "name": "OpenAI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\n\nconst response = items\n  .map((item, index) => {\n    const doc = item.json.document ?? {};\n    const text = doc.pageContent ?? '';\n    const metadata = doc.metadata ?? {};\n    const source = metadata.label ?? 'Unknown source';\n\n    return `[${index + 1}] Source: ${source}\\n${text}`;\n  })\n  .join('\\n\\n');\n\nreturn [\n  {\n    json: {\n      response\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [544, 176],
+      "id": "6f7e036c-bd49-43af-8357-9f480d2401f8",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {"json": {"query": "When is a post-implementation review required?"}}
+    ]
+  },
+  "connections": {
+    "Execute Workflow Trigger": {"main": [[{"node": "Extract Query", "type": "main", "index": 0}]]},
+    "Embeddings OpenAI": {"ai_embedding": [[{"node": "Pinecone Vector Store", "type": "ai_embedding", "index": 0}]]},
+    "Extract Query": {"main": [[{"node": "Pinecone Vector Store", "type": "main", "index": 0}]]},
+    "Pinecone Vector Store": {"main": [[{"node": "Code in JavaScript", "type": "main", "index": 0}]]}
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "bf6551f0-54d8-4871-be8a-435d241b0ebe",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "9342eae422336745a3d63556b368ee22aec7ae4c55e7253c5c0d864528879dc9"
+  },
+  "nodeGroups": [],
+  "id": "ktifC9gTTgejD3gG",
+  "tags": [
+    {"updatedAt": "2026-08-24T20:21:41.651Z", "createdAt": "2026-08-24T20:21:41.651Z", "id": "3cbabYmKYHerobzs", "name": "Enterprise Q&A"},
+    {"updatedAt": "2026-08-24T20:08:05.753Z", "createdAt": "2026-08-24T20:08:05.753Z", "id": "IYGjbh7gpjZzhUuP", "name": "RAG"},
+    {"updatedAt": "2026-08-24T20:21:41.659Z", "createdAt": "2026-08-24T20:21:41.659Z", "id": "UHHEtujDDGTi4ily", "name": "Q&A Bot"},
+    {"updatedAt": "2026-08-24T20:08:05.760Z", "createdAt": "2026-08-24T20:08:05.760Z", "id": "jfhJfTcipiO11poR", "name": "Project-2A"},
+    {"updatedAt": "2026-08-24T20:21:41.669Z", "createdAt": "2026-08-24T20:21:41.669Z", "id": "mUDvwHP3NqXSEa8Y", "name": "Ingestion"}
+  ]
+}
