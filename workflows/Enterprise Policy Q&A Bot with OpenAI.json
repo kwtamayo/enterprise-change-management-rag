@@ -1,0 +1,98 @@
+{
+  "name": "Enterprise Policy Q&A Bot with OpenAI",
+  "nodes": [
+    {
+      "parameters": {"options": {}},
+      "id": "814135bf-f35c-4769-85f2-18957fa54a2e",
+      "name": "When chat message received",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1,
+      "position": [0, 0],
+      "webhookId": "acme-policy-qa"
+    },
+    {
+      "parameters": {
+        "agent": "conversationalAgent",
+        "promptType": "define",
+        "text": "=You are an Enterprise Change Management Assistant.\n\nYou have access to a knowledge base containing the Generic Operational Change Management Procedure, NIST guidance, and FedRAMP guidance.\n\nAlways use the search_change_management_kb tool before answering change-management questions.\n\nWhen calling the search tool, pass the user's full original question. Do not narrow the question to one document, summarize it, or assume which source contains the answer.\n\nBase your answer only on information returned from the knowledge base.\n\nUse all relevant retrieved sources when the answer spans multiple documents. For federal, security, authorization, emergency, or compliance questions, check whether the retrieved evidence includes applicable NIST or FedRAMP requirements in addition to the operational procedure.\n\nIf the retrieved information does not contain enough evidence to answer the question, say clearly that the answer was not found in the knowledge base.\n\nCite the source document or documents used.\n\nKeep answers concise, factual, and easy to understand.\n\nUser question: {{ $json.chatInput }}\n",
+        "options": {}
+      },
+      "id": "dd1dd982-457b-4dc8-acba-75da108e9bba",
+      "name": "AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.6,
+      "position": [288, 0]
+    },
+    {
+      "parameters": {"contextWindowLength": 10},
+      "id": "225cb897-d3fc-4336-83f0-0acfca2c7840",
+      "name": "Window Buffer Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [384, 208]
+    },
+    {
+      "parameters": {
+        "name": "search_change_management_kb",
+        "description": "Search the Change Management knowledge base for the user's full question.\n\nThe knowledge base includes the Generic Operational Change Management Procedure, NIST guidance, and FedRAMP guidance.\n\nUse this tool for all change-management questions. For emergency, security, federal, authorization, compliance, or significant-change questions, retrieve relevant evidence across all applicable sources rather than assuming one document contains the answer.\n\nPass the user's full original question without narrowing it to a specific source.",
+        "workflowId": {
+          "__rl": true,
+          "value": "ktifC9gTTgejD3gG",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/ktifC9gTTgejD3gG",
+          "cachedResultName": "2A — Retriever Tool (Sub-Workflow)"
+        }
+      },
+      "id": "57e8dd17-1dc9-4e14-af9b-2bbafac4bb72",
+      "name": "KB Search Tool",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1.2,
+      "position": [512, 208],
+      "notes": "SETUP: After importing both workflows, open this node\nand select '2A — Retriever Tool (Sub-Workflow)'\nfrom the workflow dropdown."
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "builtInTools": {},
+        "options": {"temperature": 0.1}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [160, 208],
+      "id": "366adef8-8d0c-47f9-a21a-6214faa1e29a",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "hze7QDkLlQwrhvw4",
+          "name": "OpenAI account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {"main": [[{"node": "AI Agent", "type": "main", "index": 0}]]},
+    "Window Buffer Memory": {"ai_memory": [[{"node": "AI Agent", "type": "ai_memory", "index": 0}]]},
+    "KB Search Tool": {"ai_tool": [[{"node": "AI Agent", "type": "ai_tool", "index": 0}]]},
+    "OpenAI Chat Model": {"ai_languageModel": [[{"node": "AI Agent", "type": "ai_languageModel", "index": 0}]]}
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "5b1d4fcc-7f8b-4997-9ea3-6c1b36f933ca",
+  "meta": {"instanceId": "9342eae422336745a3d63556b368ee22aec7ae4c55e7253c5c0d864528879dc9"},
+  "nodeGroups": [],
+  "id": "HbMYzbpVlmlv6WGE",
+  "tags": [
+    {"updatedAt": "2026-08-24T20:08:05.753Z", "createdAt": "2026-08-24T20:08:05.753Z", "id": "IYGjbh7gpjZzhUuP", "name": "RAG"},
+    {"updatedAt": "2026-08-24T20:08:05.760Z", "createdAt": "2026-08-24T20:08:05.760Z", "id": "jfhJfTcipiO11poR", "name": "Project-2A"}
+  ]
+}
