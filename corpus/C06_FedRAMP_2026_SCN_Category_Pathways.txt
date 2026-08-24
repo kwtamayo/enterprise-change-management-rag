@@ -1,0 +1,18 @@
+SOURCE_ID: C06
+TITLE: FedRAMP Consolidated Rules for 2026 — Significant Change Notification, Category Pathways
+ISSUER: FedRAMP
+AUTHORITY: Authoritative FedRAMP program rules
+CANONICAL_URL: https://www.fedramp.gov/2026/reference/significant-change-notification/
+RETRIEVED: 2026-08-24
+CATEGORY: significant_change
+RULE_IDS: SCN-ADP-NTF, SCN-RTR-NNR, SCN-TRF-NIP, SCN-TRF-NFP, SCN-TRF-NAF, SCN-TRF-NAV, SCN-TRF-UPD
+
+CURATED INGESTION EXTRACT
+
+Adaptive significant changes require notification to necessary parties within 10 business days after completion, including newly identified risks or vulnerabilities when applicable.
+
+Routine recurring significant changes generally should not receive formal Significant Change Notifications because that category is exempt from formal notification requirements.
+
+Transformative significant changes have staged notification requirements: initial plans at least 30 business days before starting, final plans at least 10 business days before starting, a completion update within 5 business days after finishing, and a verification/assessment/validation update within 5 business days after that work is completed. Updated service documentation and related materials must be published within 30 business days after finishing the transformative change.
+
+A certification-class change is not handled through the ordinary SCN category pathways and requires a new assessment.
