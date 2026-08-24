@@ -1,0 +1,16 @@
+SOURCE_ID: C05
+TITLE: FedRAMP Consolidated Rules for 2026 — Significant Change Notification, Core Rules
+ISSUER: FedRAMP
+AUTHORITY: Authoritative FedRAMP program rules
+CANONICAL_URL: https://www.fedramp.gov/2026/reference/significant-change-notification/
+RETRIEVED: 2026-08-24
+CATEGORY: significant_change
+RULE_IDS: SCN-CSO-EVA, SCN-CSO-MAR, SCN-CSO-INF, SCN-CSO-EMG
+
+CURATED INGESTION EXTRACT
+
+SCN-CSO-EVA requires providers to evaluate potential significant changes, determine whether the change is significant, and if so classify it as a certification-class change, routine recurring change, transformative change, or adaptive change and follow the corresponding rules.
+
+Providers must maintain auditable records of the evaluation. Significant Change Notifications must include core identifying information, change type and categorization rationale, change description and reason, customer impact, planned timeline for verification/assessment/validation, the business or security impact analysis, and an approver’s name and title.
+
+Emergency rule SCN-CSO-EMG allows significant changes during an emergency or incident without completing advance SCN steps when necessary, but providers must still follow relevant procedures, notify necessary parties, provide SCN materials retroactively, and complete appropriate assessment afterward.
