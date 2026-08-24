@@ -1,0 +1,19 @@
+SOURCE_ID: C02
+TITLE: NIST SP 800-128, Guide for Security-Focused Configuration Management of Information Systems
+ISSUER: NIST
+AUTHORITY: Authoritative federal guidance
+CANONICAL_URL: https://csrc.nist.gov/pubs/sp/800/128/upd1/final
+RETRIEVED: 2026-08-24
+CATEGORY: configuration_management
+
+CURATED INGESTION EXTRACT
+
+Security-focused configuration management (SecCM) treats information security as part of configuration management. Its goal is to manage and monitor system configurations so organizations maintain adequate security while supporting needed business functions.
+
+A baseline configuration is the approved, recorded system configuration against which future changes are controlled. It can include architecture, hardware interconnections, software settings, software load, supporting documentation, and release-package elements. Different lifecycle environments such as development, test, staging, and production may have different baselines.
+
+Configuration change control is a documented process covering proposal, justification, implementation, testing/evaluation, review, and disposition of changes. It applies to component changes, configuration-setting changes, emergency or unscheduled changes, and flaw remediation.
+
+Security impact analysis is performed by qualified personnel to understand how a proposed change affects system security and existing controls. It should occur before approval and implementation when possible, including for emergency changes, and should be revisited after implementation to identify unanticipated effects.
+
+After an analyzed, approved, tested, implemented, and verified change, supporting technical and security documentation should be updated. Previous baselines should be retained when needed to support rollback, incident response, traceability, and audit needs. Significant or high-risk changes may require a reauthorization decision by the responsible authority.
