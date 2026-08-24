@@ -1,0 +1,22 @@
+SOURCE_ID: C01
+TITLE: NIST SP 800-53 Rev. 5 / current 5.1 derivative, targeted change-management controls
+ISSUER: NIST
+AUTHORITY: Authoritative federal control catalog
+CANONICAL_URL: https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final
+RETRIEVED: 2026-08-24
+CATEGORY: configuration_management
+CONTROL_IDS: CM-2, CM-3, CM-4, CM-5, CM-6, SI-2
+
+CURATED INGESTION EXTRACT
+
+CM-2 Baseline Configuration: Maintain a current, documented baseline configuration under configuration control. Review and update it at organization-defined intervals, when defined circumstances occur, and when components are installed or upgraded. Retain organization-defined previous baseline versions to support rollback.
+
+CM-3 Configuration Change Control: Define which changes are configuration-controlled. Review proposed controlled changes and approve or disapprove them with explicit security and privacy impact consideration. Document decisions, implement approved changes, retain change records for an organization-defined period, monitor and review change activity, and coordinate oversight through an organization-defined change-control function. CM-3(2) calls for testing, validating, and documenting changes before implementation is finalized.
+
+CM-4 Impact Analyses: Analyze proposed changes before implementation to determine potential security and privacy impacts. Relevant analysis includes effects on controls, architecture, procedures, supply-chain relationships, privacy risk, and whether additional controls are needed. CM-4(2) calls for verifying after changes that impacted controls still operate as intended.
+
+CM-5 Access Restrictions for Change: Define, document, approve, and enforce physical and logical restrictions on who can make changes.
+
+CM-6 Configuration Settings: Establish and document secure configuration settings consistent with operational needs, implement them, document and approve deviations, and monitor changes to settings.
+
+SI-2 Flaw Remediation: Identify, report, and correct flaws; test relevant software/firmware updates for effectiveness and side effects before installation; install security-relevant updates within an organization-defined period; and incorporate flaw remediation into configuration management.
