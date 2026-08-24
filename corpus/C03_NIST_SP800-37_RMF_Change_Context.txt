@@ -1,0 +1,17 @@
+SOURCE_ID: C03
+TITLE: NIST SP 800-37 Rev. 2, Risk Management Framework for Information Systems and Organizations
+ISSUER: NIST
+AUTHORITY: Authoritative federal guidance
+CANONICAL_URL: https://csrc.nist.gov/pubs/sp/800/37/r2/final
+RETRIEVED: 2026-08-24
+CATEGORY: authorization
+
+CURATED INGESTION EXTRACT
+
+The Risk Management Framework uses continuous monitoring to keep decision-makers informed about a system’s current security and privacy posture and to support risk-based authorization decisions.
+
+In the Monitor step, organizations monitor the system and its environment for changes that may affect security or privacy posture. Change-related inputs include configuration-management procedures, change requests and approvals, system design documentation, security and privacy plans, assessment results, plans of action and milestones, and other risk information.
+
+Continuous monitoring results are analyzed, risk-management documents are updated, and security/privacy posture information is reported to the authorizing official and other responsible leaders. Under ongoing authorization, the authorizing official remains accountable for understanding and accepting the risk of continued operation.
+
+A change can trigger immediate review when an organization-defined event indicates that security or privacy risk may have materially changed. Reauthorization is not automatically required after every change. It may be needed when a triggering event or changed conditions produce risk beyond acceptable organizational tolerance, or when continuous monitoring no longer provides sufficient information for ongoing authorization. Final authorization and reauthorization decisions remain with authorized officials, not the change requester or an automated assistant.
