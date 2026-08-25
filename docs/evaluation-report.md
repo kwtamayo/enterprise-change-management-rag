@@ -128,12 +128,3 @@ Reranking is a logical next improvement because it can promote the strongest evi
 
 The final Week 2 build is a working dense RAG prototype, not a production-ready federal Change Management assistant. The highest-value next improvements would be hybrid dense + keyword retrieval, reranking, stronger ambiguity/refusal behavior, and more explicit source-level citations. A production version would also need live ITSM integration, access control, freshness automation, logging, and evaluation monitoring.
 
-## 11. Demo Plan
-
-For the ≤5-minute demo:
-
-- Show the three n8n workflows and explain ingest vs. retrieve vs. generate.
-- Show Pinecone with the seven-source corpus and 37 records.
-- Ask one successful question such as NIST CM-3.
-- Ask one failure/edge-case question and explain what the evaluation revealed.
-- Close with the main learning: retrieval can be mostly correct while generation still fails to use all available evidence.
